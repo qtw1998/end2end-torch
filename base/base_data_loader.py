@@ -8,6 +8,7 @@ class BaseDataLoader(DataLoader):
     """
     Base class for all data loaders
     """
+
     def __init__(self, dataset, batch_size, shuffle, validation_split, num_workers, collate_fn=default_collate):
         self.validation_split = validation_split
         self.shuffle = shuffle
@@ -45,7 +46,7 @@ class BaseDataLoader(DataLoader):
         valid_idx = idx_full[0:len_valid]
         train_idx = np.delete(idx_full, np.arange(0, len_valid))
 
-        train_sampler = SubsetRandomSampler(train_idx)#采样器方式，如果样本不均衡的话也可以选择WeightedRandomSampler方法
+        train_sampler = SubsetRandomSampler(train_idx)  # 采样器方式，如果样本不均衡的话也可以选择WeightedRandomSampler方法
         valid_sampler = SubsetRandomSampler(valid_idx)
 
         # turn off shuffle option which is mutually exclusive with sampler

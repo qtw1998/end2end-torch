@@ -134,4 +134,5 @@ data/
 # saved
 saved/
 
-
+# pycharm
+.idea/
