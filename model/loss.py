@@ -2,8 +2,6 @@ import torch.nn.functional as F
 
 
 def nll_loss(output, target):
-    print("output shape: {}".format(output.shape))
-    print("target shape: {}".format(target.shape))
     return F.nll_loss(output, target)
 
 
