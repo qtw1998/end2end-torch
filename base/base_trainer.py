@@ -2,12 +2,14 @@ import torch
 from abc import abstractmethod
 from numpy import inf
 from logger import TensorboardWriter
+from torchsummary import summary
 
 
 class BaseTrainer:
     """
     Base class for all trainers
     """
+
     def __init__(self, model, criterion, metric_ftns, optimizer, config):
         self.config = config
         self.logger = config.get_logger('trainer', config['trainer']['verbosity'])
@@ -15,6 +17,8 @@ class BaseTrainer:
         # setup GPU device if available, move model into configured device
         self.device, device_ids = self._prepare_device(config['n_gpu'])
         self.model = model.to(self.device)
+        # summary(self.model, (66, 200))
+
         if len(device_ids) > 1:
             self.model = torch.nn.DataParallel(model, device_ids=device_ids)
 

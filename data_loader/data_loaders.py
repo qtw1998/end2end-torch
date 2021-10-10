@@ -14,6 +14,7 @@ class AutoPilotData(Dataset):
         self.data_dir = data_dir
         self.images = os.listdir(self.data_dir)
         self.transforms = transforms.Compose([
+            transforms.Resize([66, 200]),
             # Converts a PIL Image (H x W x C) to a Tensor of shape (C x H x W).
             transforms.ToTensor(),  # 将图片转换为Tensor
             transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))  # [0,1] -> [-1,1]
@@ -42,3 +43,5 @@ class DataLoader(BaseDataLoader):
         self.data_dir = data_dir
         self.dataset = AutoPilotData(self.data_dir)
         super().__init__(self.dataset, batch_size, shuffle, validation_split, num_workers)
+
+
