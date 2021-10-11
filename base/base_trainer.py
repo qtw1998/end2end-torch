@@ -73,7 +73,7 @@ class BaseTrainer:
             log = {'epoch': epoch}
             log.update(result)
 
-            # print logged informations to the screen
+            # print logged informations to the screen (VAL INFO / EPOCH)
             for key, value in log.items():
                 self.logger.info('    {:15s}: {}'.format(str(key), value))
 
