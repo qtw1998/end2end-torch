@@ -6,5 +6,6 @@ def nll_loss(output, target):
 
 
 def mse_loss(output, target):
-    print(target)
+    # print("output shape: {}".format(output.shape))
+    # print("target shape: {}".format(target.shape))
     return F.mse_loss(output, target)
