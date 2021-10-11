@@ -42,7 +42,7 @@ class Trainer(BaseTrainer):
             data, target = data.to(self.device), target.to(self.device)
             self.optimizer.zero_grad()
             output = self.model(data)
-            loss = self.criterion(output.to(torch.float32), target.to(torch.float32))
+            loss = self.criterion(output.to(torch.float32).squeeze(), target.to(torch.float32))
             loss.backward()
             self.optimizer.step()
 

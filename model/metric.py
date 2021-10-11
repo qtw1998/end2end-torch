@@ -3,10 +3,13 @@ import torch
 
 def accuracy(output, target):
     with torch.no_grad():
-        pred = torch.argmax(output, dim=1)
-        assert pred.shape[0] == len(target)
+        # pred = torch.argmax(output, dim=1)
+        pred = output.squeeze()
+        assert len(pred) == len(target)
         correct = 0
-        correct += torch.sum(pred == target).item()
+        correct += torch.sum(
+            torch.Tensor(
+                [pred[i] >= target[i] - 5.0 and pred[i] <= target[i] + 5.0 for i in range(len(target))])).item()
     return correct / len(target)
 
 

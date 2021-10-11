@@ -26,7 +26,7 @@ class AutoPilotData(Dataset):
     def __getitem__(self, index):
         image_path = os.path.join(self.data_dir, self.images[index])
         image = Image.open(image_path)
-        label = float(self.images[index].split('_')[1][:-4])
+        label = (float(self.images[index].split('_')[1][:-4]) - 45) / 90.0
         if self.transforms:
             image = self.transforms(image)
 
